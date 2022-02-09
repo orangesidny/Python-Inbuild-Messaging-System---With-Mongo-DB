@@ -12,8 +12,6 @@ with open("config.json", "r+") as f:
 
 
 cluster = MongoClient(DATABASE_URL)
-# db = cluster["dbapi"]
-# collection = db["framework"]
 chat_db = cluster.get_database(DATABASE_NAME)
 users_collection = chat_db.get_collection("users")
 message_collection = chat_db.get_collection("message")
@@ -41,8 +39,6 @@ def add_message(usern):
     newvalues = {"$set": {"_id": "message", "user": usern, "message":msg}}
 
     x = message_collection.update_one(myquery, newvalues)
-    for x in results:
-        print(x)
 
 
 
